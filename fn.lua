@@ -10,6 +10,8 @@ local table	= require("table");
 
 local unpack	= table.unpack;
 
+local fn = {};
+
 --[[
 	Copy from Lamda v0.2.0
 	https://github.com/moriyalb/lamda
@@ -148,7 +150,6 @@ fn.curry2 = _curry2;
 fn.curry3 = _curry3;
 fn.curry  = _curry2(_curry);
 
-local fn = {};
 
 local _map = function(f,list)
 	local i = 1;
@@ -163,7 +164,7 @@ local _map = function(f,list)
 
 	return res;
 end;
-fn.map = curry2(_map);
+fn.map = _curry2(_map);
 
 local _reduce = function(f,init,list)
 	local i = 1;
@@ -177,7 +178,7 @@ local _reduce = function(f,init,list)
 
 	return init;
 end;
-fn.reduce = curry3(_reduce);
+fn.reduce = _curry3(_reduce);
 
 local _filter = function(cond,list)
 	local i,count = 1,1;
@@ -197,6 +198,6 @@ local _filter = function(cond,list)
 
 	return res;
 end;
-fn.filter = curry2(_filter);
+fn.filter = _curry2(_filter);
 
 return fn;

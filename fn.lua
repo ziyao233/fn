@@ -200,4 +200,45 @@ local _filter = function(cond,list)
 end;
 fn.filter = _curry2(_filter);
 
+local _pipe = function(list)
+	local f = {};
+	local i = 1;
+	local f = list[i];
+	while this
+	do
+		f[i] = this;
+		i = i + 1;
+		this = list[i];
+	end
+	local count = i;
+	return function(v)
+			for i = count,1,-1
+			do
+				v = f[i](v);
+			end
+			return v;
+		end;
+end
+fn.pipe = _curry1(_pipe);
+
+local _head1 = function(list)
+	return list[1];
+end
+fn.head1 = _curry1(_head1);
+
+local _head = function(n,list)
+	local res = {};
+	for i = 1,n
+	do
+		res[i] = list[i];
+	end
+	return unpack(res);
+end
+fn.head = _curry2(_head);
+
+local _tail1 = function(list)
+	return list[#list];
+end
+fn.tail1 = _curry1(_tail1);
+
 return fn;

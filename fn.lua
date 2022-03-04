@@ -7,8 +7,10 @@
 ]]
 
 local table	= require("table");
+local string	= require("string");
 
 local unpack	= table.unpack;
+local sub	= string.sub;
 
 local fn = {};
 
@@ -221,24 +223,57 @@ local _pipe = function(list)
 end
 fn.pipe = _curry1(_pipe);
 
-local _head1 = function(list)
+local _head = function(list)
 	return list[1];
 end
-fn.head1 = _curry1(_head1);
+fn.head = _curry1(_head);
 
-local _head = function(n,list)
+local _tail = function(list)
 	local res = {};
+	local i = 2;
+	local this = list[i];
+
+	while this
+	do
+		res[i - 1] = this;
+		i = i + 1;
+		this = list[i];
+	end
+
+	return res;
+end
+fn.tail = _curry1(_tail);
+
+local _take = function(n,list)
+	local res = {};
+
 	for i = 1,n
 	do
 		res[i] = list[i];
 	end
-	return unpack(res);
-end
-fn.head = _curry2(_head);
 
-local _tail1 = function(list)
-	return list[#list];
+	return res;
 end
-fn.tail1 = _curry1(_tail1);
+fn.take = _curry2(_take);
+
+local _singleChar = function(s)
+	local len = #s;
+	local res = {};
+
+	for i = 1,len
+	do
+		res[i] = sub(s,i,i);
+	end
+
+	return res;
+end
+fn.singleChar = _curry1(_singleChar);
+
+fn.add = _curry2(function(a,b) return a + b; end);
+fn.sub = _curry2(function(a,b) return b - a; end);
+fn.mul = _curry2(function(a,b) return a * b; end);
+fn.div = _curry2(function(a,b) return b / a; end);
+fn.mod = _curry2(function(a,b) return b % a; end);
+fn.idiv = _curry2(function(a,b) return b // a; end);
 
 return fn;

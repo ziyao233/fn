@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/fn.lua
-	Date:2022.02.25
+	Date:2022.03.04
 	By MIT License.
 	Copyright (c) 2022 Suote127.All rights reserved.
 ]]
@@ -38,7 +38,7 @@ local _curry1 = function(fn)
 		end
 	end
 	return f1;
-end;
+end
 
 local _curry2 = function(fn)
 	local f2;
@@ -189,7 +189,7 @@ local _filter = function(cond,list)
 	do
 		if cond(this)
 		then
-			list[count] = this;
+			res[count] = this;
 			count = count + 1;
 		end
 		i = i + 1;

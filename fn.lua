@@ -205,14 +205,14 @@ fn.filter = _curry2(_filter);
 local _pipe = function(list)
 	local f = {};
 	local i = 1;
-	local f = list[i];
+	local this = list[i];
 	while this
 	do
 		f[i] = this;
 		i = i + 1;
 		this = list[i];
 	end
-	local count = i;
+	local count = i - 1;
 	return function(v)
 			for i = count,1,-1
 			do

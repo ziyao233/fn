@@ -220,12 +220,12 @@ local _pipe = function(list)
 			end
 			return v;
 		end;
-end
+end;
 fn.pipe = _curry1(_pipe);
 
 local _head = function(list)
 	return list[1];
-end
+end;
 fn.head = _curry1(_head);
 
 local _tail = function(list)
@@ -241,7 +241,7 @@ local _tail = function(list)
 	end
 
 	return res;
-end
+end;
 fn.tail = _curry1(_tail);
 
 local _take = function(n,list)
@@ -253,8 +253,13 @@ local _take = function(n,list)
 	end
 
 	return res;
-end
+end;
 fn.take = _curry2(_take);
+
+local _len = function(s)
+	return #s;
+end;
+fn.len = _curry1(_len);
 
 local _singleChar = function(s)
 	local len = #s;
@@ -266,7 +271,7 @@ local _singleChar = function(s)
 	end
 
 	return res;
-end
+end;
 fn.singleChar = _curry1(_singleChar);
 
 fn.add = _curry2(function(a,b) return a + b; end);

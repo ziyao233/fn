@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/fn.lua
-	Date:2022.03.04
+	Date:2022.03.05
 	By MIT License.
 	Copyright (c) 2022 Suote127.All rights reserved.
 ]]
@@ -275,5 +275,28 @@ fn.mul = _curry2(function(a,b) return a * b; end);
 fn.div = _curry2(function(a,b) return b / a; end);
 fn.mod = _curry2(function(a,b) return b % a; end);
 fn.idiv = _curry2(function(a,b) return b // a; end);
+
+fn.bitAnd = _curry2(function(a,b) return a & b; end);
+fn.bitOr = _curry2(function(a,b) return a | b; end);
+fn.bitNot = _curry2(function(a) return ~a; end);
+fn.bitXor = _curry2(function(a,b) return a ~ b; end);
+
+fn.gt = _curry2(function(a,b) return b > a; end);
+fn.lt = _curry2(function(a,b) return b < a; end);
+fn.equ = _curry2(function(a,b) return a == b; end);
+fn.ge = _curry2(function(a,b) return b >= a; end);
+fn.le = _curry2(function(a,b) return b <= a; end);
+fn.strictEqu = _curry2(function(a,b)
+			return a == b and
+			       type(a) == type(b);
+		       end);
+
+fn._and = _curry2(function(a,b) return a and b; end);
+fn._or = _curry2(function(a,b) return a or b; end);
+fn._not = _curry1(function(a) return not a; end);
+
+fn.type = _curry1(type);
+fn.integer = _curry1(math.tointeger);
+fn.string = _curry1(tostring);
 
 return fn;

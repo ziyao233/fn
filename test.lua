@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/test.lua
-	Date:2022.03.04
+	Date:2022.03.05
 	By MIT License.
 	Copyright (c) 2022 Suote127.All rights reserved.
 ]]
@@ -48,4 +48,7 @@ print("fn.singleChar()");
 print(fn.singleChar(s));
 
 print("fn.map(fn.sub(1))");
-print(fn.map(fn.sub(1),l));
+print(fn.map(fn.sub(1))(l));
+
+print("fn.reduce(fn.add,0)");
+print(fn.reduce(fn.add,0)(l));

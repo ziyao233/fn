@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/fn.lua
-	Date:2022.03.05
+	Date:2022.03.09
 	By MIT License.
 	Copyright (c) 2022 Suote127.All rights reserved.
 ]]
@@ -150,7 +150,13 @@ end;
 fn.curry1 = _curry1;
 fn.curry2 = _curry2;
 fn.curry3 = _curry3;
-fn.curry  = _curry2(_curry);
+fn.curry  = _curry2(function(n,f)
+			if n == 1
+			then
+				return _curry1(f);
+			end
+			return _curry(n,{},f);
+		    end);
 
 
 local _map = function(f,list)
@@ -273,6 +279,41 @@ local _singleChar = function(s)
 	return res;
 end;
 fn.singleChar = _curry1(_singleChar);
+
+local _idx = function(key,obj)
+	return obj[key];
+end;
+fn.idx = _curry2(_idx);
+
+local _copy = function(obj)
+	if type(obj) == "table"
+	then
+		local res = {};
+		for k,v in pairs(res)
+		do
+			res[k] = v;
+		end
+		obj = res;
+	end
+	return obj;
+end
+fn.copy = _curry1(_copy);
+
+local _range = function(gen,step,a,b)
+	gen = gen or function(v) return v; end;
+	local res = {};
+	local count = 1;
+	step = step or 1;
+	a = a or 1;
+
+	for i = a,b,step
+	do
+		res[count] = gen(i);
+	end
+
+	return res;
+end
+fn.range = _curry(4,{},_range);
 
 fn.add = _curry2(function(a,b) return a + b; end);
 fn.sub = _curry2(function(a,b) return b - a; end);

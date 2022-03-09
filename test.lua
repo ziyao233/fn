@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/test.lua
-	Date:2022.03.05
+	Date:2022.03.09
 	By MIT License.
 	Copyright (c) 2022 Suote127.All rights reserved.
 ]]
@@ -59,3 +59,16 @@ print("fn.filter(isOdd)");
 print(fn.filter(isOdd)(l));
 print("fn.filter(isEven)");
 print(fn.filter(isEven)(l));
+
+local l1 = fn.copy(l);
+local l2 = fn.range(function(x) return x; end,1,6,1);
+local _cmp;
+_cmp = function(l1,l2)
+	if #l1 == 0
+	then
+		return true;
+	end
+	return l1[1] == l2[1] and _cmp(fn.tail(l1),fn.tail(l2));
+end
+print("_cmp(l1,l2)");
+print(#l1 == #l2 and _cmp(l1,l2));

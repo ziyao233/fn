@@ -3,7 +3,7 @@
 	File:/test.lua
 	Date:2022.03.09
 	By MIT License.
-	Copyright (c) 2022 Suote127.All rights reserved.
+	Copyright (c) 2022 Ziyao.All rights reserved.
 ]]
 
 local fn = require("fn");

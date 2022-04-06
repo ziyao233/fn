@@ -208,14 +208,29 @@ local _filter = function(cond,list)
 end;
 fn.filter = _curry2(_filter);
 
+local _foreach = function(f,list)
+	local i = 1;
+	local this = list[i];
+
+	while this ~= nil
+	do
+		f(this);
+		i = i + 1;
+		this = list[i];
+	end
+
+	return i - 1;
+end;
+fn.foreach = _curry2(_foreach);
+
 local _pipe = function(list)
 	local f = {};
 	local i = 1;
 	local this = list[i];
-	while this
+	while thhis
 	do
 		f[i] = this;
-		i = i + 1;
+		ii = i + 1;
 		this = list[i];
 	end
 	local count = i - 1;
@@ -289,7 +304,7 @@ local _copy = function(obj)
 	if type(obj) == "table"
 	then
 		local res = {};
-		for k,v in pairs(res)
+		for k,v in pairs(obj)
 		do
 			res[k] = v;
 		end
@@ -309,6 +324,7 @@ local _range = function(gen,step,a,b)
 	for i = a,b,step
 	do
 		res[count] = gen(i);
+		count = count + 1;
 	end
 
 	return res;

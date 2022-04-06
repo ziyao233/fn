@@ -61,7 +61,7 @@ print("fn.filter(isEven)");
 print(fn.filter(isEven)(l));
 
 local l1 = fn.copy(l);
-local l2 = fn.range(function(x) return x; end,1,6,1);
+local l2 = fn.range(function(x) return x; end,1,1,6);
 local _cmp;
 _cmp = function(l1,l2)
 	if #l1 == 0
@@ -72,3 +72,4 @@ _cmp = function(l1,l2)
 end
 print("_cmp(l1,l2)");
 print(#l1 == #l2 and _cmp(l1,l2));
+fn.foreach(io.write,l1);

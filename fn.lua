@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/fn.lua
-	Date:2022.03.09
+	Date:2022.04.07
 	By MIT License.
 	Copyright (c) 2022 Ziyao.All rights reserved.
 ]]
@@ -235,7 +235,7 @@ local _pipe = function(list)
 	end
 	local count = i - 1;
 	return function(v)
-			for i = count,1,-1
+			for i = 1,count
 			do
 				v = f[i](v);
 			end

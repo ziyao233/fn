@@ -1,7 +1,7 @@
 --[[
 	fn
 	File:/test.lua
-	Date:2022.03.09
+	Date:2022.04.07
 	By MIT License.
 	Copyright (c) 2022 Ziyao.All rights reserved.
 ]]
@@ -53,7 +53,7 @@ print(fn.map(fn.sub(1))(l));
 print("fn.reduce(fn.add,0)");
 print(fn.reduce(fn.add,0)(l));
 
-local isOdd = fn.pipe({fn.equ(1),fn.mod(2)});
+local isOdd = fn.pipe({fn.mod(2),fn.equ(1)});
 local isEven = fn.pipe({fn._not,isOdd});
 print("fn.filter(isOdd)");
 print(fn.filter(isOdd)(l));

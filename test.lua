@@ -54,7 +54,7 @@ print("fn.reduce(fn.add,0)");
 print(fn.reduce(fn.add,0)(l));
 
 local isOdd = fn.pipe({fn.mod(2),fn.equ(1)});
-local isEven = fn.pipe({fn._not,isOdd});
+local isEven = fn.pipe({isOdd,fn._not});
 print("fn.filter(isOdd)");
 print(fn.filter(isOdd)(l));
 print("fn.filter(isEven)");

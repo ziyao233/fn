@@ -227,10 +227,10 @@ local _pipe = function(list)
 	local f = {};
 	local i = 1;
 	local this = list[i];
-	while thhis
+	while this
 	do
 		f[i] = this;
-		ii = i + 1;
+		i = i + 1;
 		this = list[i];
 	end
 	local count = i - 1;

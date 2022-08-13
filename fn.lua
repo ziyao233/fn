@@ -1,9 +1,9 @@
 --[[
-	fn
-	File:/fn.lua
-	Date:2022.04.07
-	By MIT License.
-	Copyright (c) 2022 Ziyao.All rights reserved.
+--	fn
+--	File:/fn.lua
+--	Date:2022.08.13
+--	By MIT License.
+--	Copyright (c) 2022 Ziyao.All rights reserved.
 ]]
 
 local table	= require("table");
@@ -249,6 +249,11 @@ local _head = function(list)
 end;
 fn.head = _curry1(_head);
 
+local _last = function(list)
+	return list[#list];
+end;
+fn.last = _curry1(_last);
+
 local _tail = function(list)
 	local res = {};
 	local i = 2;
@@ -282,7 +287,7 @@ local _len = function(s)
 end;
 fn.len = _curry1(_len);
 
-local _singleChar = function(s)
+local _toTable = function(s)
 	local len = #s;
 	local res = {};
 
@@ -293,7 +298,7 @@ local _singleChar = function(s)
 
 	return res;
 end;
-fn.singleChar = _curry1(_singleChar);
+fn.toTable= _curry1(_toTable);
 
 local _idx = function(key,obj)
 	return obj[key];
@@ -331,6 +336,17 @@ local _range = function(gen,step,a,b)
 end
 fn.range = _curry(4,{},_range);
 
+local _toString = function(v)
+	local t = type(v);
+	if t == "table"
+	then
+		return table.concat(v);
+	else
+		return tostring(v);
+	end
+end;
+fn.toString = _curry1(_toString);
+
 fn.add = _curry2(function(a,b) return a + b; end);
 fn.sub = _curry2(function(a,b) return b - a; end);
 fn.mul = _curry2(function(a,b) return a * b; end);
@@ -352,13 +368,11 @@ fn.strictEqu = _curry2(function(a,b)
 			return a == b and
 			       type(a) == type(b);
 		       end);
-
 fn._and = _curry2(function(a,b) return a and b; end);
 fn._or = _curry2(function(a,b) return a or b; end);
 fn._not = _curry1(function(a) return not a; end);
 
 fn.type = _curry1(type);
-fn.integer = _curry1(math.tointeger);
-fn.string = _curry1(tostring);
+fn.toInteger = _curry1(math.tointeger);
 
 return fn;
